@@ -2,4 +2,4 @@
 import ErrorLocation
 
 main = let x = [1,2,3]
-       in putStrLn . show $ $(trc "WTF?") x
+       in putStrLn . show $ $(dbgMsg "list") $ $(dbg) $ $(trc "WTF?") x

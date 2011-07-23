@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
-module ErrorLocation (err, undef, debug, trc) where
+module ErrorLocation (err, undef, debug, dbg, dbgMsg, trc) where
 
 import Language.Haskell.TH.Syntax
 import Debug.Trace
@@ -39,6 +39,21 @@ locationToString loc = (loc_package loc) ++ ":" ++ (loc_module loc) ++ " " ++
 -- This should be included in Debug.Trace
 debug :: Show a => a -> a
 debug x = trace ("DEBUG: " ++ show x) x
+
+-- |  A TH  version  of Debug.Trace.trace  that  just prints  a  value.
+dbg :: Q Exp
+dbg = do
+  loc <- qLocation
+  let pre = "DEBUG: " ++ (locationToString loc)
+  [|(\x -> trace (pre ++ ' ' : show x) x)|]
+
+-- |  A TH  version  of Debug.Trace.trace  that  just prints  a  value (with  a
+-- prefix).
+dbgMsg :: String -> Q Exp
+dbgMsg msg = do
+  loc <- qLocation
+  let pre = "DEBUG: " ++ (locationToString loc) ++ ' ' : msg ++ ": "
+  [|(\x -> trace (pre ++ show x) x)|]
 
 -- | A TH version of Debug.Trace.trace that prints location information
 -- TODO: make a debug version of this
