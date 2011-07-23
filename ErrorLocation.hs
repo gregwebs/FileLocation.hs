@@ -62,3 +62,16 @@ trc str = do
   loc <- qLocation
   let prefix = "TRACE: " ++ (locationToString loc) ++ " "
   [|trace (prefix ++ str)|]
+
+-- | trace (print on stdout at runtime) a showable expression
+-- (for easily tracing in the middle of a complex expression)
+strace :: Show a => a -> a
+strace a = trace (show a) a
+
+-- | labelled trace - like strace, with a label prepended
+ltrace :: Show a => String -> a -> a
+ltrace l a = trace (l ++ ": " ++ show a) a
+
+-- | monadic trace - like strace, but works as a standalone line in a monad
+mtrace :: (Monad m, Show a) => a -> m a
+mtrace a = strace a `seq` return a
