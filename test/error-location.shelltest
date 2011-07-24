@@ -1,0 +1,14 @@
+test/main
+>>>
+[1,2,3]
+>>>2
+TRACE: main:Main test/main.hs:7:84 trc
+DEBUG: [1,2,3]
+DEBUG: main:Main test/main.hs:7:67: [1,2,3]
+DEBUG: Msg plain: [1,2,3]
+DEBUG: main:Main test/main.hs:7:23 Msg TH: [1,2,3]
+traceM: [1,2,3]
+DEBUG: [1,2,3]
+main:Main test/main.hs:10:5 undefined
+main: Prelude.undefined
+>>>= 1

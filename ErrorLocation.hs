@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
-module ErrorLocation (err, undef, debug, dbg, debugM, debugMsg, dbgMsg, trc, ltraceM) where
+module ErrorLocation (err, undef, debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace) where
 
 import Language.Haskell.TH.Syntax
 import Debug.Trace
@@ -74,6 +74,11 @@ dbgM = do
   let prefix = "DEBUG: " ++ (locationToString loc) ++ " "
   [|(\x -> ltraceM (prefix ++ show x) x)|]
 
+-- | monadic debug - like debug, but works as a standalone line in a monad
+-- TODO: TH version with error loaction info
+debugM :: (Monad m, Show a) => a -> m a
+debugM a = debug a `seq` return a
+
 -- | trace (print on stdout at runtime) a showable expression
 -- like debug, but does not print "DEBUG: "
 strace :: Show a => a -> a
@@ -82,11 +87,6 @@ strace a = trace (show a) a
 -- | labelled trace - like strace, with a label prepended
 ltrace :: Show a => String -> a -> a
 ltrace l a = trace (l ++ ": " ++ show a) a
-
--- | monadic debug - like debug, but works as a standalone line in a monad
--- TODO: TH version with error loaction info
-debugM :: (Monad m, Show a) => a -> m a
-debugM a = debug a `seq` return a
 
 -- | monadic debug - like debug, but works as a standalone line in a monad
 -- TODO: TH version with error loaction info
