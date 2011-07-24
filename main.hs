@@ -1,5 +1,11 @@
 {-# LANGUAGE TemplateHaskell #-}
 import ErrorLocation
 
-main = let x = [1,2,3]
-       in putStrLn . show $ $(dbgMsg "list") $ $(dbg) $ $(trc "WTF?") x
+
+main = do
+  let x = [1,2,3]
+  putStrLn . show $ $(dbgMsg "Msg TH") $ debugMsg "Msg plain" $ $(dbg) $ debug $ $(trc "trc") x
+  ltraceM "traceM" x
+  debugM x
+  $(undef)
+  $(err "Oh no!")
