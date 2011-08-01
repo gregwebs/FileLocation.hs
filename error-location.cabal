@@ -1,5 +1,5 @@
 Name:                error-location
-Version:             0.1.4
+Version:             0.1.5
 Synopsis:            error functions that show file location information
 Homepage:            https://github.com/gregwebs/ErrorLocation.hs
 License:             BSD3
