@@ -1,5 +1,5 @@
 Name:                error-location
-Version:             0.1.5
+Version:             0.1.5.2
 Synopsis:            error functions that show file location information
 Homepage:            https://github.com/gregwebs/ErrorLocation.hs
 License:             BSD3
@@ -27,13 +27,13 @@ Description:
     > [1,2,3]
     .
     And The Template Haskell version.
-
-    > debug [1,2,3]
+    .
+    > $(dbg) [1,2,3]
     >
     > DEBUG main:Main main.hs:1:3 [1,2,3]
     > [1,2,3]
     .
-    See module for a listing of all the functions with short descriptions, and the homepage for some more examples <https://github.com/gregwebs/ErrorLocation.hs>
+    See module for a listing of all the functions with short descriptions, and the homepage for some more examples https://github.com/gregwebs/ErrorLocation.hs
 
 Source-Repository head
   type: git
