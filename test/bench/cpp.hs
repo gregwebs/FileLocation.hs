@@ -1,5 +1,5 @@
 {-# LANGUAGE CPP, TemplateHaskell #-}
--- import ErrorLocation
+-- import FileLocation
 #include "consts.h"
 
 main = do

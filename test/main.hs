@@ -1,6 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
-import ErrorLocation
-
+import FileLocation
 
 main = do
   let x = [1,2,3]

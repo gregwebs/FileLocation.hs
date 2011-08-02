@@ -1,6 +1,6 @@
-Name:                error-location
-Version:             0.1.5.2
-Synopsis:            error functions that show file location information
+Name:                file-location
+Version:             0.2.1
+Synopsis:            common functions that show file location information
 Homepage:            https://github.com/gregwebs/ErrorLocation.hs
 License:             BSD3
 License-file:        LICENSE
@@ -10,7 +10,7 @@ Category:            Development
 Build-type:          Simple
 Cabal-version:       >=1.6
 Description: 
-    Error functions that give file location information
+    Common debugging/error/exception functions that give file location information
     .
     > $(err "OH NO!")
     >
@@ -37,10 +37,11 @@ Description:
 
 Source-Repository head
   type: git
-  location:    https://github.com/gregwebs/ErrorLocation.hs
+  location:    https://github.com/gregwebs/FileLocation.hs
 
 Library
-  Exposed-modules: ErrorLocation
+  Exposed-modules: FileLocation, Debug.FileLocation
+  Other-modules: FileLocation.Internal
   
   -- Packages needed in order to build this package.
   Build-depends: base >= 4 && < 5,
