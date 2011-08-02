@@ -9,11 +9,11 @@ A very simple macro- add file and line number information to an error function.
 
 ## running the CPP file
 
-    rm -f cpp && rm -f cpp.o && rm -f cpp.hi && time ghc --make -O2 cpp.hs
+    rm -f cpp cpp.o cpp.hi && time ghc --make -O2 cpp.hs
 
 ## running the hs file
 
-    rm -f hs && rm -f hs.o && rm -f hs.hi && time ghc --make -O2 hs.hs
+    rm -f hs hs.o hs.hi && time ghc --make -O2 hs.hs
 
 # Comparison
 

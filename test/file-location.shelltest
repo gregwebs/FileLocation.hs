@@ -2,7 +2,7 @@
 cd test && ghc --make main
 >>>= 0
 
-./test/main && rm ./test/main
+./test/main
 >>>
 [1,2,3]
 >>>2
@@ -16,3 +16,6 @@ DEBUG: [1,2,3]
 main:Main main.hs:9:5 undefined
 main: Prelude.undefined
 >>>= 1
+
+rm ./test/main ./test/main.hi ./test/main.o
+>>>= 0
