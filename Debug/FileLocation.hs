@@ -5,7 +5,7 @@ module Debug.FileLocation
 
 import Language.Haskell.TH.Syntax
 import Debug.Trace
-import FileLocation.Internal (locationToString)
+import FileLocation.LocationString (locationToString)
 
 -- | A version of Debug.Trace.trace that just prints a value.
 -- This should be included in Debug.Trace

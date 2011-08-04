@@ -1,12 +1,13 @@
 {-# LANGUAGE TemplateHaskell #-}
 -- | see Debug.FileLocation module for more definitions
 module FileLocation
-  (err, undef,
-   debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace
+  ( err, undef
+  , debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace
+  , locationToString
   )
   where
 
-import FileLocation.Internal (locationToString)
+import FileLocation.LocationString (locationToString)
 import Debug.FileLocation (debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace)
 import Debug.Trace (trace)
 -- future plans
