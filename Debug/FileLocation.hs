@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell #-}
 module Debug.FileLocation
-  (debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace)
+  (debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace, traceId)
   where
 
 import Language.Haskell.TH.Syntax
@@ -53,8 +53,13 @@ debugM a = debug a `seq` return a
 
 -- | trace (print on stdout at runtime) a showable expression
 -- like debug, but does not print "DEBUG: "
-strace :: Show a => a -> a
+-- traceId is an alias for strace
+-- strace stands for "show trace"
+-- traceId means it returns itself after tracing like the id function
+strace, traceId :: Show a => a -> a
 strace a = trace (show a) a
+
+traceId = strace
 
 -- | labelled trace - like strace, with a label prepended
 ltrace :: Show a => String -> a -> a
