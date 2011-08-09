@@ -1,5 +1,5 @@
 Name:                file-location
-Version:             0.2.2
+Version:             0.2.3
 Synopsis:            common functions that show file location information
 Homepage:            https://github.com/gregwebs/ErrorLocation.hs
 License:             BSD3
@@ -40,8 +40,10 @@ Source-Repository head
   location:    https://github.com/gregwebs/FileLocation.hs
 
 Library
-  Exposed-modules: FileLocation, Debug.FileLocation
-  Other-modules: FileLocation.LocationString
+  Exposed-modules: FileLocation,
+                   Debug.FileLocation,
+                   Debug.Util,
+                   FileLocation.LocationString
   
   -- Packages needed in order to build this package.
   Build-depends: base >= 4 && < 5,
