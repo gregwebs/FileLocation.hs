@@ -1,19 +1,18 @@
 
-cd test && ghc --make main
->>>= 0
-
 ./test/main
 >>>
 [1,2,3]
+Caught AException "main:Main test/main.hs:25:6"
+Caught AException "main:Main test/main.hs:26:6 doh!"
 >>>2
-TRACE: main:Main main.hs:6:84 trc
+TRACE: main:Main test/main.hs:22:84 trc
 DEBUG: [1,2,3]
-DEBUG: main:Main main.hs:6:67: [1,2,3]
+DEBUG: main:Main test/main.hs:22:67: [1,2,3]
 DEBUG: Msg plain: [1,2,3]
-DEBUG: main:Main main.hs:6:23 Msg TH: [1,2,3]
+DEBUG: main:Main test/main.hs:22:23 Msg TH: [1,2,3]
 traceM: [1,2,3]
 DEBUG: [1,2,3]
-main:Main main.hs:9:5 undefined
+main:Main test/main.hs:27:5 undefined
 main: Prelude.undefined
 >>>= 1
 

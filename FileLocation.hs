@@ -4,13 +4,13 @@ module FileLocation
   ( err, undef
   , debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace
   , locationToString
-  , thrwIO
+  , thrwIO, thrwsIO
   )
   where
 
 import FileLocation.LocationString (locationToString)
 import Debug.FileLocation (debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace)
-import Control.Exception.Control.FileLocation (thrwIO)
+import Control.Exception.Control.FileLocation (thrwIO, thrwsIO)
 import Debug.Trace (trace)
 -- future plans
 -- import Control.Exception.FileLocation (thrw, thrwIO)
