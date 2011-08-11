@@ -1,7 +1,7 @@
 Name:                file-location
-Version:             0.2.4
+Version:             0.3.0
 Synopsis:            common functions that show file location information
-Homepage:            https://github.com/gregwebs/ErrorLocation.hs
+Homepage:            https://github.com/gregwebs/FileLocation.hs
 License:             BSD3
 License-file:        LICENSE
 Author:              Greg Weber
