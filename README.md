@@ -52,7 +52,7 @@ Also there is a version of thrwIO that gives location information. thrwsIO takes
     data AException = AException String deriving (Show, Typeable)
     instance Exception AException
 
-    ($(thrwIO) $ AException) `catch` \e -> putStrLn ("Caught " ++ show (e :: AException))
+    ($(thrwIO) AException) `catch` \e -> putStrLn ("Caught " ++ show (e :: AException))
     
     Caught AException "main:Main test/main.hs:25:6"
 

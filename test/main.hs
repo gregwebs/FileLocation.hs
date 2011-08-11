@@ -22,7 +22,7 @@ main = do
   putStrLn . show $ $(dbgMsg "Msg TH") $ debugMsg "Msg plain" $ $(dbg) $ debug $ $(trc "trc") x
   ltraceM "traceM" x
   debugM x
-  ($(thrwIO) $ AException) `catch` \e -> putStrLn ("Caught " ++ show (e :: AException))
+  ($(thrwIO) AException) `catch` \e -> putStrLn ("Caught " ++ show (e :: AException))
   ($(thrwsIO "doh!") AException) `catch` \e -> putStrLn ("Caught " ++ show (e :: AException))
   $(undef)
   $(err "Oh no!")
