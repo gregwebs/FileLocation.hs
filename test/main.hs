@@ -2,20 +2,20 @@
 
 import Data.Data (Data, Typeable)
 import FileLocation
-import Control.Exception.Control (catch, try)
 import Control.Exception.Base (Exception(..))
 import Prelude hiding (catch)
-import Control.Monad.Trans.Error (throwError, ErrorT (..), Error (..))
-import Control.Monad.IO.Class
-import Control.Exception.Control (throwIO)
+import Control.Exception.Control (throwIO, catch)
+
+
+
 
 data AException = AException String
      deriving (Show, Typeable)
 
 instance Exception AException
 
-runE :: MonadIO m => AException -> m ()
-runE (AException str) = liftIO $ putStrLn str
+
+
 
 main = do
   let x = [1,2,3]
