@@ -6,7 +6,11 @@ import Language.Haskell.TH.Syntax
 import FileLocation.LocationString (locationToString)
 
 import Control.Exception.Base hiding (throwIO)
-import Control.Exception.Control (throwIO)
+import qualified Control.Exception as E
+import Control.Monad.IO.Class (MonadIO (liftIO))
+
+throwIO :: (Exception e, MonadIO m) => e -> m a
+throwIO = liftIO . E.throwIO
 
 thrwIO :: Q Exp
 thrwIO = do
