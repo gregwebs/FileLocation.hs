@@ -10,7 +10,7 @@ module FileLocation
 
 import FileLocation.LocationString (locationToString)
 import Debug.FileLocation (debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace)
-import Control.Exception.Control.FileLocation (thrwIO, thrwsIO)
+import Control.Exception.FileLocation (thrwIO, thrwsIO)
 import Debug.Trace (trace)
 -- future plans
 -- import Control.Exception.FileLocation (thrw, thrwIO)

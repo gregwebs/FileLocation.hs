@@ -1,5 +1,5 @@
 {-# LANGUAGE TemplateHaskell #-}
-module Control.Exception.Control.FileLocation (thrwIO, thrwsIO) where
+module Control.Exception.FileLocation (thrwIO, thrwsIO) where
 
 import Language.Haskell.TH.Syntax
 
