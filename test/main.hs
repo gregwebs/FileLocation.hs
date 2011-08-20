@@ -2,7 +2,7 @@
 
 import Data.Data (Data, Typeable)
 import FileLocation
-import Control.Exception.Base (Exception(..))
+import Control.Exception.Base (SomeException, Exception(..))
 import Prelude hiding (catch)
 import Control.Exception.Control (throwIO, catch)
 
@@ -22,7 +22,9 @@ main = do
   putStrLn . show $ $(dbgMsg "Msg TH") $ debugMsg "Msg plain" $ $(dbg) $ debug $ $(trc "trc") x
   ltraceM "traceM" x
   debugM x
-  ($(thrwIO) AException) `catch` \e -> putStrLn ("Caught " ++ show (e :: AException))
+  ($thrwIO AException) `catch` \e -> putStrLn ("Caught " ++ show (e :: AException))
   ($(thrwsIO "doh!") AException) `catch` \e -> putStrLn ("Caught " ++ show (e :: AException))
-  $(undef)
+  ($fromJst Nothing) `catch` \e -> putStrLn ("Caught " ++ show (e :: SomeException))
+  ($fromRht (Left "Lefty")) `catch` \e -> putStrLn ("Caught " ++ show (e :: SomeException))
+  $undef `catch` \e -> putStrLn ("Caught " ++ show (e :: SomeException))
   $(err "Oh no!")

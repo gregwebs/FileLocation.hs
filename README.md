@@ -9,10 +9,14 @@ Common debugging/error/exception functions and template haskell versions that gi
 Notice how it displays package:module file:line:character
 It exposes the functions err (error), undef (undefined), and trc (Debug.Trace.trace). All of these behave the same as their normal counterpart but also spit out a location.
 
-    > $(undef)
+    > $undef
     main:Main test/main.hs:10:5 undefined
     main: Prelude.undefined
 
+2 other error functions are included- fromJst and fromRht.
+
+    > $fromJst Nothing
+    main:Main test/main.hs:27:4 fromJst: Nothing
 
 # Debug helpers
 
@@ -26,7 +30,7 @@ I also included my favorite helper, debug, which is like trace but just show the
 There is a version without the DEBUG prefix called both strace and traceId.
 And Here is the TH version of debug `dbg`:
 
-    > $(dbg) [1,2,3]
+    > $dbg [1,2,3]
     DEBUG main:Main main.hs:1:3 [1,2,3]
     [1,2,3]
 

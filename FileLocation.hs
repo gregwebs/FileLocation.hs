@@ -1,7 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 -- | see Debug.FileLocation module for more definitions
 module FileLocation
-  ( err, undef
+  ( err, undef, fromJst, fromRht
   , debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace
   , locationToString
   , thrwIO, thrwsIO
@@ -39,3 +39,21 @@ undef = do
   loc <- qLocation
   let prefix = (locationToString loc) ++ " "
   [|trace (prefix ++ "undefined") undefined|]
+
+-- | like fromJust, but also shows the file location
+fromJst :: Q Exp
+fromJst = do
+  loc <- qLocation
+  let msg = (locationToString loc) ++ " fromJst: Nothing"
+  [|\m -> case m of
+            Just v -> v
+            Nothing -> error msg|]
+
+-- | like fromRight, but also show the file location
+fromRht :: Q Exp
+fromRht = do
+  loc <- qLocation
+  let msg = (locationToString loc) ++ " fromRht: Left: "
+  [|\m -> case m of
+            Right v -> v
+            Left e -> error (msg ++ show e)|]

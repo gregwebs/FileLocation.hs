@@ -2,8 +2,11 @@
 ./test/main
 >>>
 [1,2,3]
-Caught AException "main:Main test/main.hs:25:6"
+Caught AException "main:Main test/main.hs:25:4"
 Caught AException "main:Main test/main.hs:26:6 doh!"
+Caught main:Main test/main.hs:27:4 fromJst: Nothing
+Caught main:Main test/main.hs:28:4 fromRht: Left: "Lefty"
+Caught Prelude.undefined
 >>>2
 TRACE: main:Main test/main.hs:22:84 trc
 DEBUG: [1,2,3]
@@ -12,8 +15,8 @@ DEBUG: Msg plain: [1,2,3]
 DEBUG: main:Main test/main.hs:22:23 Msg TH: [1,2,3]
 traceM: [1,2,3]
 DEBUG: [1,2,3]
-main:Main test/main.hs:27:5 undefined
-main: Prelude.undefined
+main:Main test/main.hs:29:3 undefined
+main: main:Main test/main.hs:30:5 Oh no!
 >>>= 1
 
 rm ./test/main ./test/main.hi ./test/main.o
