@@ -1,5 +1,5 @@
 Name:                file-location
-Version:             0.4.1
+Version:             0.4.2
 Synopsis:            common functions that show file location information
 Homepage:            https://github.com/gregwebs/FileLocation.hs
 License:             BSD3

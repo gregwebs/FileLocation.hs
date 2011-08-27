@@ -9,6 +9,7 @@ Caught main:Main test/main.hs:28:4 fromRht: Left: "Lefty"
 Caught Prelude.undefined
 >>>2
 TRACE: main:Main test/main.hs:22:84 trc
+DEBUG: debugMsgIf: [1,2,3]
 DEBUG: [1,2,3]
 DEBUG: main:Main test/main.hs:22:67: [1,2,3]
 DEBUG: Msg plain: [1,2,3]

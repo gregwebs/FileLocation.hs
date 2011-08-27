@@ -19,7 +19,7 @@ dbg = do
   [|(\x -> ltrace pre x)|]
 
 -- | TH version  of Debug.Trace.trace that prints a value and a message
--- prefix).
+-- prefix.
 dbgMsg :: String -> Q Exp
 dbgMsg msg = do
   loc <- qLocation

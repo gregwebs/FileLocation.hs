@@ -16,9 +16,9 @@ instance Exception AException
 
 
 
-
 main = do
-  let x = [1,2,3]
+  let _ = debugMsgIf "Not Visble" id False
+  let x = debugMsgIf "debugMsgIf" (\xs -> head xs == 1) [1,2,3]
   putStrLn . show $ $(dbgMsg "Msg TH") $ debugMsg "Msg plain" $ $(dbg) $ debug $ $(trc "trc") x
   ltraceM "traceM" x
   debugM x

@@ -1,7 +1,7 @@
 -- | functions that help you with debugging.
 -- Most would make sense in the Debug.Trace module
 module Debug.Util 
-  (debug, debugM, debugMsg, ltrace, ltraceM, strace, traceId)
+  (debug, debugM, debugMsg, debugMsgIf, ltrace, ltraceM, strace, traceId)
   where
 
 import Debug.Trace (trace)
@@ -16,6 +16,10 @@ debug = ltrace "DEBUG"
 debugMsg :: Show a => String -> a -> a
 debugMsg msg = ltrace ("DEBUG: " ++ msg)
 
+-- | A version of Debug.Trace.trace that just prints a value and a message.
+-- This should be included in Debug.Trace
+debugMsgIf :: Show a => String -> (a -> Bool) -> a -> a
+debugMsgIf msg cond x = if cond x then ltrace ("DEBUG: " ++ msg) x else x
 
 -- | monadic debug - like debug, but works as a standalone line in a monad
 -- TODO: TH version with error loaction info

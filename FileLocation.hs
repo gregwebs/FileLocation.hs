@@ -2,7 +2,7 @@
 -- | see Debug.FileLocation module for more definitions
 module FileLocation
   ( err, undef, fromJst, fromRht
-  , debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace
+  , debug, debugM, debugMsg, debugMsgIf, dbg, dbgMsg, trc, ltrace, ltraceM, strace
   , locationToString
   , thrwIO, thrwsIO
   )
@@ -10,11 +10,9 @@ module FileLocation
 
 import FileLocation.LocationString (locationToString)
 import Debug.FileLocation (debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace)
+import Debug.Util (debugMsgIf)
 import Control.Exception.FileLocation (thrwIO, thrwsIO)
 import Debug.Trace (trace)
--- future plans
--- import Control.Exception.FileLocation (thrw, thrwIO)
-
 import Language.Haskell.TH.Syntax
 
 -- | like Prelude.error, but gives the file location
