@@ -13,7 +13,7 @@ Description:
     Common debugging\/error\/exception functions that give file location information
     .
     @
-    $(err "OH NO!")
+    $(err \"OH NO!\")
        
     main:Main main.hs:16:1 OH NO!
     @
