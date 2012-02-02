@@ -17,13 +17,23 @@ import Language.Haskell.TH.Syntax
 
 -- | like Prelude.error, but gives the file location
 --
--- > $(err "OH NO!)
+-- > $(err "OH NO!")
 -- > main:Main main.hs:4:10 OH NO!
 err :: String -> Q Exp
 err str = do
   loc <- qLocation
   let prefix = (locationToString loc) ++ " "
   [|error (prefix ++ str)|]
+
+-- | like 'err', but the error message (to be appended to the location) is an argument of the generated expression.
+--
+-- > $(err) "OH NO!"
+-- > main:Main main.hs:4:10 OH NO!
+err' :: Q Exp
+err' str = do
+  loc <- qLocation
+  let prefix = (locationToString loc) ++ " "
+  [| error . (prefix ++) |]
 
 -- | like Prelude.undefined, but gives the file location
 -- use trace to output the location.
@@ -55,3 +65,4 @@ fromRht = do
   [|\m -> case m of
             Right v -> v
             Left e -> error (msg ++ show e)|]
+
