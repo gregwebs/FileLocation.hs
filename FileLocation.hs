@@ -1,7 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 -- | see Debug.FileLocation module for more definitions
 module FileLocation
-  ( err, undef, fromJst, fromRht
+  ( err, err', undef, fromJst, fromRht, indx, indxShow
   , debug, debugM, debugMsg, debugMsgIf, dbg, dbgMsg, trc, ltrace, ltraceM, strace
   , locationToString
   , thrwIO, thrwsIO
