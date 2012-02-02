@@ -16,6 +16,7 @@ import Debug.Trace (trace)
 import Language.Haskell.TH.Syntax
 import Language.Haskell.TH(varE)
 import Data.Maybe(fromMaybe)
+import qualified Data.Map as M (lookup)
 
 -- | Like Prelude.error, but gives the file location.
 --
@@ -69,8 +70,6 @@ fromRht = do
             Left _e -> error (msg ++ show _e)|]
 
 -- | Like @(flip ('Data.Map.!')@, but also shows the file location in case the element isn't found.
---
--- Note: Uses the @lookup@ function from whatever @Data.Map@ module is currently in an exposed package.
 indx :: Q Exp
 indx = indx_common False
 
@@ -79,8 +78,7 @@ indxShow :: Q Exp
 indxShow = indx_common True
 
 indx_common :: Bool -> Q Exp
-indx_common = indxWith_common (varE (Name (mkOccName "lookup") (NameQ (mkModName "Data.Map"))))
-                                -- avoid dep on containers (?)
+indx_common = indxWith_common [| M.lookup |]
 
 indxWith_common :: Q Exp -> Bool -> Q Exp
 indxWith_common lookupE showElt = do
