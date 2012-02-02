@@ -14,6 +14,8 @@ import Debug.Util (debugMsgIf)
 import Control.Exception.FileLocation (thrwIO, thrwsIO)
 import Debug.Trace (trace)
 import Language.Haskell.TH.Syntax
+import Language.Haskell.TH(varE)
+import Data.Maybe(fromMaybe)
 
 -- | like Prelude.error, but gives the file location
 --
@@ -30,7 +32,7 @@ err str = do
 -- > $(err) "OH NO!"
 -- > main:Main main.hs:4:10 OH NO!
 err' :: Q Exp
-err' str = do
+err' = do
   loc <- qLocation
   let prefix = (locationToString loc) ++ " "
   [| error . (prefix ++) |]
@@ -66,3 +68,28 @@ fromRht = do
             Right v -> v
             Left e -> error (msg ++ show e)|]
 
+-- | like @(flip ('Data.Map.!')@, but also shows the file location in case the element isn't found.
+--
+-- Note: Uses the @lookup@ function from whatever @Data.Map@ module is currently in an exposed package.
+indx :: Q Exp
+indx = indx_common False
+
+-- | Like 'indx', but also 'show's the looked-up element in case it isn't found.
+indxShow :: Q Exp
+indxShow = indx_common True
+
+indx_common :: Bool -> Q Exp
+indx_common = indxWith_common (varE (Name (mkOccName "lookup") (NameQ (mkModName "Data.Map"))))
+                              -- ^^^^ avoid dep on containers
+
+indxWith_common :: Q Exp -> Bool -> Q Exp
+indxWith_common lookupE showElt = do
+  loc <- qLocation
+  let msg = (locationToString loc) ++ " indx: Element not in the map"
+
+      msgE varName = if showElt
+                        then [| msg ++ ": " ++ show $(varE varName) |]
+                        else [| msg |]
+
+
+  [| \_x _m -> fromMaybe (error $(msgE '_x)) ($(lookupE) _x _m) |]
