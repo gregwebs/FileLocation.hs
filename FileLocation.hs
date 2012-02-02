@@ -55,8 +55,8 @@ fromJst :: Q Exp
 fromJst = do
   loc <- qLocation
   let msg = (locationToString loc) ++ " fromJst: Nothing"
-  [|\m -> case m of
-            Just v -> v
+  [|\_m -> case _m of
+            Just _v -> _v
             Nothing -> error msg|]
 
 -- | like fromRight, but also show the file location
@@ -64,9 +64,9 @@ fromRht :: Q Exp
 fromRht = do
   loc <- qLocation
   let msg = (locationToString loc) ++ " fromRht: Left: "
-  [|\m -> case m of
-            Right v -> v
-            Left e -> error (msg ++ show e)|]
+  [|\_m -> case _m of
+            Right _v -> _v
+            Left _e -> error (msg ++ show _e)|]
 
 -- | like @(flip ('Data.Map.!')@, but also shows the file location in case the element isn't found.
 --
