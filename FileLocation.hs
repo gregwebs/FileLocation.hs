@@ -80,7 +80,7 @@ indxShow = indx_common True
 
 indx_common :: Bool -> Q Exp
 indx_common = indxWith_common (varE (Name (mkOccName "lookup") (NameQ (mkModName "Data.Map"))))
-                              -- ^^^^ avoid dep on containers
+                                -- avoid dep on containers (?)
 
 indxWith_common :: Q Exp -> Bool -> Q Exp
 indxWith_common lookupE showElt = do
