@@ -17,7 +17,7 @@ import Language.Haskell.TH.Syntax
 import Language.Haskell.TH(varE)
 import Data.Maybe(fromMaybe)
 
--- | like Prelude.error, but gives the file location
+-- | Like Prelude.error, but gives the file location.
 --
 -- > $(err "OH NO!")
 -- > main:Main main.hs:4:10 OH NO!
@@ -27,7 +27,7 @@ err str = do
   let prefix = (locationToString loc) ++ " "
   [|error (prefix ++ str)|]
 
--- | like 'err', but the error message (to be appended to the location) is an argument of the generated expression.
+-- | Like 'err', but the error message (to be appended to the location) is an argument of the generated expression.
 --
 -- > $(err) "OH NO!"
 -- > main:Main main.hs:4:10 OH NO!
@@ -37,9 +37,9 @@ err' = do
   let prefix = (locationToString loc) ++ " "
   [| error . (prefix ++) |]
 
--- | like Prelude.undefined, but gives the file location
--- use trace to output the location.
--- this way we still use undefined instead of calling error
+-- | Like Prelude.undefined, but gives the file location.
+--
+-- Uses trace to output the location (this way we still use undefined instead of calling error).
 --
 -- > $(undef)
 -- > main:Main main.hs:4:10 undefined
@@ -50,7 +50,7 @@ undef = do
   let prefix = (locationToString loc) ++ " "
   [|trace (prefix ++ "undefined") undefined|]
 
--- | like fromJust, but also shows the file location
+-- | Like 'fromJust', but also shows the file location.
 fromJst :: Q Exp
 fromJst = do
   loc <- qLocation
@@ -59,7 +59,7 @@ fromJst = do
             Just _v -> _v
             Nothing -> error msg|]
 
--- | like fromRight, but also show the file location
+-- | Like 'fromRight', but also show the file location.
 fromRht :: Q Exp
 fromRht = do
   loc <- qLocation
@@ -68,7 +68,7 @@ fromRht = do
             Right _v -> _v
             Left _e -> error (msg ++ show _e)|]
 
--- | like @(flip ('Data.Map.!')@, but also shows the file location in case the element isn't found.
+-- | Like @(flip ('Data.Map.!')@, but also shows the file location in case the element isn't found.
 --
 -- Note: Uses the @lookup@ function from whatever @Data.Map@ module is currently in an exposed package.
 indx :: Q Exp
