@@ -1,5 +1,5 @@
--- | functions that help you with debugging.
--- Most would make sense in the Debug.Trace module
+-- | Functions that help you with debugging.
+-- Most would make sense in the Debug.Trace module.
 module Debug.Util 
   (debug, debugM, debugMsg, debugMsgIf, ltrace, ltraceM, strace, traceId)
   where
@@ -21,26 +21,31 @@ debugMsg msg = ltrace ("DEBUG: " ++ msg)
 debugMsgIf :: Show a => String -> (a -> Bool) -> a -> a
 debugMsgIf msg cond x = if cond x then ltrace ("DEBUG: " ++ msg) x else x
 
--- | monadic debug - like debug, but works as a standalone line in a monad
+-- | Monadic debug - like debug, but works as a standalone line in a monad.
+--
 -- TODO: TH version with error loaction info
 debugM :: (Monad m, Show a) => a -> m a
 debugM a = debug a `seq` return a
 
--- | trace (print on stdout at runtime) a showable expression
--- like debug, but does not print "DEBUG: "
--- traceId is an alias for strace
--- strace stands for "show trace"
--- traceId means it returns itself after tracing like the id function
-strace, traceId :: Show a => a -> a
+-- | Trace (print on stderr at runtime) a showable expression
+-- like 'debug', but do not print \"DEBUG: \".
+--
+-- \"strace\" stands for \"show trace\".
+strace :: Show a => a -> a
 strace a = trace (show a) a
 
+-- Alias for 'strace'.
+--
+-- \"traceId\" means it returns itself after tracing like the 'id' function.
+traceId :: Show a => a -> a
 traceId = strace
 
--- | labelled trace - like strace, with a label prepended
+-- | Labelled trace - like 'strace', but with a label prepended.
 ltrace :: Show a => String -> a -> a
 ltrace l a = trace (l ++ ": " ++ show a) a
 
--- | monadic debug - like debug, but works as a standalone line in a monad
+-- | Monadic debug - like debug, but works as a standalone line in a monad.
+--
 -- TODO: TH version with error loaction info
 ltraceM :: (Monad m, Show a) => String -> a -> m a
 ltraceM str a = ltrace str a `seq` return a

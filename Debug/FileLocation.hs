@@ -16,7 +16,7 @@ dbg :: Q Exp
 dbg = do
   loc <- qLocation
   let pre = "DEBUG: " ++ (locationToString loc)
-  [|(\x -> ltrace pre x)|]
+  [|(\_x -> ltrace pre _x)|]
 
 -- | TH version  of Debug.Trace.trace that prints a value and a message
 -- prefix.
@@ -24,7 +24,7 @@ dbgMsg :: String -> Q Exp
 dbgMsg msg = do
   loc <- qLocation
   let pre = "DEBUG: " ++ (locationToString loc) ++ ' ' : msg
-  [|(\x -> ltrace pre x)|]
+  [|(\_x -> ltrace pre _x)|]
 
 -- | A TH version of Debug.Trace.trace that prints location information
 trc :: String -> Q Exp
@@ -38,4 +38,4 @@ dbgM :: Q Exp
 dbgM = do
   loc <- qLocation
   let prefix = "DEBUG: " ++ (locationToString loc) ++ " "
-  [|(\x -> ltraceM (prefix ++ show x) x)|]
+  [|(\_x -> ltraceM (prefix ++ show _x) _x)|]

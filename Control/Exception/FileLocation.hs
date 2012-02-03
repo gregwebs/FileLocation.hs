@@ -16,13 +16,13 @@ thrwIO :: Q Exp
 thrwIO = do
   loc <- qLocation
   let locStr = locationToString loc
-  [|(\mkEx -> throwIO (mkEx locStr))|]
+  [|(\_mkEx -> throwIO (_mkEx locStr))|]
 
 thrwsIO :: String -> Q Exp
 thrwsIO errMsg = do
   loc <- qLocation
   let locStr = locationToString loc
-  [|(\mkEx -> throwIO (mkEx (locStr ++ " " ++ errMsg)))|]
+  [|(\_mkEx -> throwIO (_mkEx (locStr ++ " " ++ errMsg)))|]
 
 {- usually want to make a located vesion of a function rather than use this.
  - perhaps it could be used to quickly make a located version
