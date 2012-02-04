@@ -4,7 +4,7 @@ import Data.Data (Data, Typeable)
 import FileLocation
 import Control.Exception.Base (SomeException, Exception(..))
 import Prelude hiding (catch)
-import Control.Exception.Control (throwIO, catch)
+import Control.Exception.Control (catch)
 
 
 
