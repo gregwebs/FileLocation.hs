@@ -51,8 +51,12 @@ Description:
     See module for a listing of all the functions with short descriptions, and the homepage for some more examples https://github.com/gregwebs/ErrorLocation.hs
 
 extra-source-files:
-    test/*
-    test/bench/*
+    test/*.sh
+    test/*.hs
+    test/*.shelltest
+    test/bench/*.hs
+    test/bench/*.md
+    test/bench/*.h
 
 Library
   Exposed-modules: FileLocation,
