@@ -68,7 +68,7 @@ Library
   -- Packages needed in order to build this package.
   Build-depends:  base >= 4 && < 5
                 , template-haskell
-                , transformers     >= 0.2 && < 0.3
+                , transformers     >= 0.2 && < 0.4
                 , containers
 
 Source-Repository head
