@@ -60,6 +60,8 @@ Also there is a version of thrwIO that gives location information. thrwsIO takes
     
     Caught AException "main:Main test/main.hs:25:6"
 
+Just added: `reThrow`. It catches exceptions, stamps some file location information onto it, and re-throws the exception. Note that  the file-location information is only for the reThrow usage site, it is still best to use `thrwIO` if you control the creation of the exception.
+
 # Test Suite
 
 ./test/run.sh
