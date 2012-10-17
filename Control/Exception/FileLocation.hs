@@ -1,13 +1,18 @@
-{-# LANGUAGE TemplateHaskell #-}
-module Control.Exception.FileLocation (thrwIO, thrwsIO) where
+{-# LANGUAGE TemplateHaskell, DeriveDataTypeable #-}
+module Control.Exception.FileLocation
+    ( thrwIO
+    , thrwsIO
+    , reThrow
+    ) where
 
 import Language.Haskell.TH.Syntax
 
 import FileLocation.LocationString (locationToString)
 
 import Control.Exception.Base hiding (throwIO)
-import qualified Control.Exception as E
+import qualified Control.Exception.Lifted as E
 import Control.Monad.IO.Class (MonadIO (liftIO))
+import Data.Typeable (Typeable)
 
 throwIO :: (Exception e, MonadIO m) => e -> m a
 throwIO = liftIO . E.throwIO
@@ -24,15 +29,11 @@ thrwsIO errMsg = do
   let locStr = locationToString loc
   [|(\_mkEx -> throwIO (_mkEx (locStr ++ " " ++ errMsg)))|]
 
-{- usually want to make a located vesion of a function rather than use this.
- - perhaps it could be used to quickly make a located version
--- {-# LANGUAGE DeriveDataTypeable, ExistentialQuantification #-}
--- import Data.Typeable (Typeable)
-data ReThrownException = forall e. (Exception e, Show e) => ReThrownException String e
-  deriving (Typeable)
+data ReThrownException = ReThrownException String E.SomeException
+  deriving Typeable
 
 instance Show ReThrownException where
-  show (ReThrownException s e) = "ReThrownException: " ++ s ++ "\n" ++ show e
+  show (ReThrownException s e) = "ReThrownException (" ++ s ++ "): " ++ show e
 
 instance Exception ReThrownException
 
@@ -40,5 +41,4 @@ reThrow :: Q Exp
 reThrow = do
   loc <- qLocation
   let locStr = locationToString loc
-  [|\risky -> E.catch risky (\e -> throwIO (ReThrownException locStr e))|]
-  -}
+  [|E.handle (E.throwIO . ReThrownException locStr)|]

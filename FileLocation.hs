@@ -5,13 +5,14 @@ module FileLocation
   , debug, debugM, debugMsg, debugMsgIf, dbg, dbgMsg, trc, ltrace, ltraceM, strace
   , locationToString
   , thrwIO, thrwsIO
+  , reThrow
   )
   where
 
 import FileLocation.LocationString (locationToString)
 import Debug.FileLocation (debug, debugM, debugMsg, dbg, dbgMsg, trc, ltrace, ltraceM, strace)
 import Debug.Util (debugMsgIf)
-import Control.Exception.FileLocation (thrwIO, thrwsIO)
+import Control.Exception.FileLocation (thrwIO, thrwsIO, reThrow)
 import Debug.Trace (trace)
 import Language.Haskell.TH.Syntax
 import Language.Haskell.TH(varE)

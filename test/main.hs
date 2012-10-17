@@ -27,4 +27,5 @@ main = do
   ($fromJst Nothing) `catch` \e -> putStrLn ("Caught " ++ show (e :: SomeException))
   ($fromRht (Left "Lefty")) `catch` \e -> putStrLn ("Caught " ++ show (e :: SomeException))
   $undef `catch` \e -> putStrLn ("Caught " ++ show (e :: SomeException))
+  $reThrow (error "foo") `catch` \e -> print ("Rethrow", e :: SomeException)
   $(err "Oh no!")
