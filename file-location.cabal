@@ -67,6 +67,7 @@ Library
   
   -- Packages needed in order to build this package.
   Build-depends:  base >= 4 && < 5
+                , lifted-base
                 , template-haskell
                 , transformers     >= 0.2 && < 0.4
                 , containers
