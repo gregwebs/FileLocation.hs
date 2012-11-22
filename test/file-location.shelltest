@@ -1,24 +1,24 @@
 
-./test/main
+./test/main foo
 >>>
 [1,2,3]
-Caught AException "main:Main test/main.hs:25:4"
-Caught AException "main:Main test/main.hs:26:6 doh!"
-Caught main:Main test/main.hs:27:4 fromJst: Nothing
-Caught main:Main test/main.hs:28:4 fromRht: Left: "Lefty"
+Caught AException "main:Main test/main.hs:57:4"
+Caught AException "main:Main test/main.hs:58:6 doh!"
+Caught main:Main test/main.hs:59:4 fromJst: Nothing
+Caught main:Main test/main.hs:60:4 fromRht: Left: "Lefty"
 Caught Prelude.undefined
-("Rethrow",ReThrownException (main:Main test/main.hs:30:3): foo)
+("Rethrow",ReThrownException (main:Main test/main.hs:62:3): foo)
 >>>2
-TRACE: main:Main test/main.hs:22:84 trc
+TRACE: main:Main test/main.hs:54:84 trc
 DEBUG: debugMsgIf: [1,2,3]
 DEBUG: [1,2,3]
-DEBUG: main:Main test/main.hs:22:67: [1,2,3]
+DEBUG: main:Main test/main.hs:54:67: [1,2,3]
 DEBUG: Msg plain: [1,2,3]
-DEBUG: main:Main test/main.hs:22:23 Msg TH: [1,2,3]
+DEBUG: main:Main test/main.hs:54:23 Msg TH: [1,2,3]
 traceM: [1,2,3]
 DEBUG: [1,2,3]
-main:Main test/main.hs:29:3 undefined
-main: main:Main test/main.hs:31:5 Oh no!
+main:Main test/main.hs:61:3 undefined
+test: main:Main test/main.hs:63:5 Oh no!
 >>>= 1
 
 rm ./test/main ./test/main.hi ./test/main.o
