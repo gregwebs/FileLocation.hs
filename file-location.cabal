@@ -1,5 +1,5 @@
 Name:                file-location
-Version:             0.4.5.2
+Version:             0.4.5.3
 Synopsis:            common functions that show file location information
 Homepage:            https://github.com/gregwebs/FileLocation.hs
 License:             BSD3
@@ -69,7 +69,7 @@ Library
   Build-depends:  base >= 4 && < 5
                 , lifted-base
                 , template-haskell
-                , transformers     >= 0.2 && < 0.4
+                , transformers     >= 0.2 && < 0.5
                 , containers
 
 -- This just helps you get the packages for test/main.hs
