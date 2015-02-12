@@ -1,5 +1,5 @@
 Name:                file-location
-Version:             0.4.7
+Version:             0.4.7.1
 Synopsis:            common functions that show file location information
 Homepage:            https://github.com/gregwebs/FileLocation.hs
 License:             BSD3
@@ -79,14 +79,11 @@ Library
 test-suite test
     type:           exitcode-stdio-1.0
     main-is:        main.hs
-    hs-source-dirs: ., test
+    hs-source-dirs: test
     ghc-options: -Wall
-    Build-depends: base
-                 , file-location
+    Build-depends: file-location
+                 , base >= 4 && < 5
                  , lifted-base
-                 , containers
-                 , template-haskell
-                 , transformers
                  , process
                   -- shelltestrunner: need shelltest executable
 
