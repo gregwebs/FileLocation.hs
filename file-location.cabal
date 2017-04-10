@@ -71,7 +71,7 @@ Library
                 , lifted-base
                 , template-haskell
                 , th-orphans       >= 0.9
-                , transformers     >= 0.2 && < 0.5
+                , transformers     >= 0.2 && < 0.6
                 , containers
                 , HUnit
 
